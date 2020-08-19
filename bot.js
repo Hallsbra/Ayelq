@@ -19,6 +19,16 @@ if(DiscordJS.version < "12.0.0") {
 // Contains functions for controlling the bot.
 //---------------------------------------------------------------------
 
+const express = require('express');
+const app = express();
+ 
+app.get('/', (req, res) => {
+    res.send('funcionando');
+});
+app.listen(8080, function () {
+   console.log('porta 8080')
+});
+
 const Bot = DBM.Bot = {};
 
 Bot.$cmds = {}; // Normal commands
@@ -134,7 +144,7 @@ Bot.initEvents = function() {
 };
 
 Bot.login = function() {
-	this.bot.login(Files.data.settings.token);
+    this.bot.login(process.env.TOKEN);
 };
 
 Bot.onReady = function() {
